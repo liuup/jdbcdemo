@@ -77,4 +77,19 @@ public class Database {
 
         return count > 0;
     }
+
+
+    public boolean alterBrandName(int id, String brandName) throws Exception {
+        Connection conn = DriverManager.getConnection(url, user, password);
+
+        String sql = "update tb_brand set brand_name = ? where id = ?";
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, brandName);
+        pstmt.setInt(2, id);
+
+        int count = pstmt.executeUpdate();
+
+        return count > 0;
+    }
 }
